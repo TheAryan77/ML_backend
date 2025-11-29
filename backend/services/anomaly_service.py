@@ -51,3 +51,13 @@ def detect_anomaly(data):
         "is_anomaly": int(pred == -1),
         "anomaly_score": float(score)
     }
+def detect_anomaly_from_dict(features: dict):
+    df = pd.DataFrame([features])
+    df = df[feature_list]
+    X = scaler.transform(df)
+    pred = iso.predict(X)[0]
+    score = iso.decision_function(X)[0]
+    return {
+        "is_anomaly": int(pred == -1),
+        "anomaly_score": float(score)
+    }

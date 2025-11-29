@@ -50,3 +50,9 @@ def predict_cluster(data):
     cluster = int(kmeans.predict(X_pca)[0])
     return {"cluster": cluster}
 
+def predict_cluster_from_dict(features: dict):
+    df = pd.DataFrame([features])
+    df = df[feature_list]
+    X = scaler.transform(df)
+    X_pca = pca.transform(X)
+    return {"cluster": int(kmeans.predict(X_pca)[0])}
